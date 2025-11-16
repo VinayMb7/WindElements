@@ -48,6 +48,13 @@ export async function init(options: { overwrite?: boolean } = {}) {
     process.exit(1);
   }
   
+  // Check if Tailwind CSS config exists
+  if (!hasTailwind) {
+    console.error(chalk.red('\n❌ Tailwind CSS configuration not found in this project. Please set up Tailwind CSS first.'));
+    console.log(chalk.white('Run: npx tailwindcss init'));
+    process.exit(1);
+  }
+  
   const responses = await prompts([
     {
       type: 'text',
