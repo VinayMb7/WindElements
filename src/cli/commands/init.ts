@@ -38,20 +38,11 @@ export async function init(options: { overwrite?: boolean } = {}) {
   
   // Detect project type
   const hasTypeScript = await fs.pathExists(path.join(cwd, 'tsconfig.json'));
-  const hasTailwind = await fs.pathExists(path.join(cwd, 'tailwind.config.js')) || 
-                       await fs.pathExists(path.join(cwd, 'tailwind.config.ts'));
   
   // Check if TypeScript is configured
   if (!hasTypeScript) {
     console.error(chalk.red('\n❌ TypeScript is not configured in this project. Please set up TypeScript first.'));
     console.log(chalk.white('Run: npx tsc --init'));
-    process.exit(1);
-  }
-  
-  // Check if Tailwind CSS config exists
-  if (!hasTailwind) {
-    console.error(chalk.red('\n❌ Tailwind CSS configuration not found in this project. Please set up Tailwind CSS first.'));
-    console.log(chalk.white('Run: npx tailwindcss init'));
     process.exit(1);
   }
   
@@ -86,7 +77,7 @@ export async function init(options: { overwrite?: boolean } = {}) {
     componentDir: responses.componentDir,
     utilsDir: responses.utilsDir,
     cssFile: responses.cssFile,
-    tailwindConfig: hasTailwind ? 'tailwind.config.js' : ''
+    tailwindConfig: ''
   };
   
   const spinner = ora('Creating configuration file...').start();
@@ -117,9 +108,14 @@ export async function init(options: { overwrite?: boolean } = {}) {
     if (!hasValidTailwind) {
       spinner.warn('Tailwind CSS v4+ not found!');
       console.log(chalk.yellow('\n⚠️  Tailwind CSS v4.1 or higher is required. Please install it:\n'));
-      console.log(chalk.white('  bun add -d tailwindcss@^4.1.0\n'));
-      console.log(chalk.gray('  # or with npm: npm install -D tailwindcss@^4.1.0\n'));
-      console.log(chalk.gray('  # or with yarn: yarn add -D tailwindcss@^4.1.0\n'));
+      console.log(chalk.white('  bun add -d tailwindcss@^4.1.0 @tailwindcss/vite\n'));
+      console.log(chalk.gray('  # or with npm: npm install -D tailwindcss@^4.1.0 @tailwindcss/vite\n'));
+      console.log(chalk.gray('  # or with yarn: yarn add -D tailwindcss@^4.1.0 @tailwindcss/vite\n'));
+      console.log(chalk.white('\n  Then add the plugin to your vite.config.ts:\n'));
+      console.log(chalk.white('  import tailwindcss from \'@tailwindcss/vite\';\n'));
+      console.log(chalk.white('  export default defineConfig({\n'));
+      console.log(chalk.white('    plugins: [tailwindcss()],\n'));
+      console.log(chalk.white('  });\n'));
       
       const { proceed } = await prompts({
         type: 'confirm',

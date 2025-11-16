@@ -48,9 +48,9 @@ npx windelements@latest init
 
 This will:
 - ✅ Create `components.json` configuration
-- ✅ Require TypeScript and Tailwind CSS configuration
+- ✅ Require TypeScript and Tailwind CSS v4+ configuration
 - ✅ Set up component directory (default: `src/components/ui`)
-- ✅ Auto-inject OKLCH theme CSS variables
+- ✅ Auto-inject OKLCH theme CSS variables and `@import "tailwindcss"`
 - ✅ Copy utility functions to your project
 
 ### Add Components
@@ -183,8 +183,7 @@ Your `components.json` file:
   "typescript": true,
   "componentDir": "src/components/ui",
   "utilsDir": "src/lib",
-  "cssFile": "src/styles/globals.css",
-  "tailwindConfig": "tailwind.config.js"
+  "cssFile": "src/styles/globals.css"
 }
 ```
 
