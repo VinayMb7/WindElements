@@ -48,7 +48,7 @@ npx windelements@latest init
 
 This will:
 - ✅ Create `components.json` configuration
-- ✅ Detect TypeScript and Tailwind CSS
+- ✅ Require TypeScript and Tailwind CSS configuration
 - ✅ Set up component directory (default: `src/components/ui`)
 - ✅ Auto-inject OKLCH theme CSS variables
 - ✅ Copy utility functions to your project
@@ -115,7 +115,7 @@ document.body.appendChild(card.getElement());
 ### JavaScript Example
 
 ```javascript
-import { createButton } from './components/button.js';
+import { createButton } from './components/ui/button.js';
 
 const button = createButton({
   variant: 'default',
@@ -181,7 +181,7 @@ Your `components.json` file:
 ```json
 {
   "typescript": true,
-  "componentDir": "src/components",
+  "componentDir": "src/components/ui",
   "utilsDir": "src/lib",
   "cssFile": "src/styles/globals.css",
   "tailwindConfig": "tailwind.config.js"
