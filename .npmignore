@@ -1,0 +1,49 @@
+# Source files (we include dist/ instead)
+*.ts
+!*.d.ts
+
+# Tests
+**/*.test.*
+**/*.spec.*
+__tests__/
+coverage/
+
+# Documentation source
+docs/
+.vitepress/
+
+# Build configs
+tsconfig*.json
+vite.config.ts
+
+# Development files
+.vscode/
+.idea/
+*.log
+.DS_Store
+.env*
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+
+# Misc
+*.tgz
+node_modules/
+.cache/
+temp/
+tmp/
+
+# Keep these files
+!README.md
+!LICENSE
+!package.json
+
+# Keep dist, src/components, src/registry
+!dist/**
+!src/components/**
+!src/registry/**

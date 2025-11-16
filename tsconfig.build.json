@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false,
+    "emitDeclarationOnly": false,
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src/index.ts", "src/components/**/*", "src/utils/**/*", "src/lib/**/*", "src/registry/**/*"],
+  "exclude": ["src/cli/**/*", "**/*.test.ts", "**/*.spec.ts"]
+}
