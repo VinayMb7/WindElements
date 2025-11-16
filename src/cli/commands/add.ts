@@ -3,7 +3,8 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
-import { getAllComponentNames, getComponent, getDependencies } from '../../registry/index';
+import { fileURLToPath } from 'url';
+import { getAllComponentNames, getComponent, getDependencies } from '../../registry/index.js';
 
 interface Config {
   typescript: boolean;
@@ -122,29 +123,35 @@ export async function add(components: string[], options: { all?: boolean; overwr
   }
 }
 
-async function getComponentTemplate(name: string, ext: string, _config: Config): Promise<string> {
-  // Copy from actual source files in src/components/
-  const packageRoot = path.join(__dirname, '../..');
-  const sourceComponentPath = path.join(packageRoot, 'components', `${name}.ts`);
+async function getComponentTemplate(name: string, _ext: string, config: Config): Promise<string> {
+  // For TypeScript projects, use source .ts files with proper types
+  // For JavaScript projects, use compiled .js files
+  const packageRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '../../..');
+  const sourcePath = config.typescript 
+    ? path.join(packageRoot, 'src', 'components', `${name}.ts`)
+    : path.join(packageRoot, 'dist', 'components', `${name}.js`);
   
   try {
-    // Read the actual source file
-    if (await fs.pathExists(sourceComponentPath)) {
-      let content = await fs.readFile(sourceComponentPath, 'utf-8');
+    // Read the component file
+    if (await fs.pathExists(sourcePath)) {
+      let content = await fs.readFile(sourcePath, 'utf-8');
       
-      // If user wants JS, we'd need to transpile (for now just copy as-is)
-      // In production, you'd use TypeScript API to transpile
-      if (ext === 'js') {
-        // For now, just change imports from .ts to .js in the content
-        content = content.replace(/from ['"](.+)\.ts['"]/g, "from '$1.js'");
+      // Adjust imports for the user's project structure
+      // The imports are relative to their location in the package
+      if (config.typescript) {
+        // For TypeScript: imports are from '../lib/utils'
+        content = content.replace(/from ['"]\.\.\/lib\/utils['"]/g, "from '../../lib/utils'");
+      } else {
+        // For JavaScript: imports need .js extension
+        content = content.replace(/from ['"]\.\.\/lib\/utils['"]/g, "from '../../lib/utils.js'");
       }
       
       return content;
     }
   } catch (error) {
-    console.warn(`Warning: Could not read source file for ${name}`);
+    console.warn(`Warning: Could not read component file for ${name}`, error);
   }
   
-  // Fallback: return placeholder
+  // Fallback: return error message
   return `// Component ${name} not found\n// Please check the component name and try again\n`;
 }

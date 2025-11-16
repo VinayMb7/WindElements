@@ -18,7 +18,7 @@
   <a href="https://github.com/muhammad-fiaz/WindElements/releases"><img src="https://img.shields.io/github/v/release/muhammad-fiaz/WindElements" alt="GitHub release"></a>
   <a href="https://github.com/muhammad-fiaz/WindElements"><img src="https://img.shields.io/github/license/muhammad-fiaz/WindElements" alt="License"></a>
   <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/deploy.yml"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/deploy.yml/badge.svg" alt="Deploy Documentation"></a>
-  <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/publish.yml"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/publish.yml/badge.svg" alt="Publish NPM"></a>
+
 
 
   **📚 [Documentation](https://muhammad-fiaz.github.io/WindElements/) | [API Reference](https://muhammad-fiaz.github.io/WindElements/components/) | [Quick Start](https://muhammad-fiaz.github.io/WindElements/guide/getting-started/)**

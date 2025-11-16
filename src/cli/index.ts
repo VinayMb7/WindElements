@@ -14,6 +14,7 @@ program
 program
   .command('init')
   .description('Initialize windelements in your project')
+  .option('--overwrite', 'overwrite existing configuration without prompting')
   .action(init);
 
 program

@@ -3,6 +3,7 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
+import { fileURLToPath } from 'url';
 
 interface Config {
   typescript: boolean;
@@ -12,7 +13,7 @@ interface Config {
   tailwindConfig: string;
 }
 
-export async function init() {
+export async function init(options: { overwrite?: boolean } = {}) {
   console.log(chalk.blue.bold('\n✨ Welcome to WindElements!\n'));
   
   const cwd = process.cwd();
@@ -20,16 +21,18 @@ export async function init() {
   
   // Check if already initialized
   if (await fs.pathExists(configPath)) {
-    const { overwrite } = await prompts({
-      type: 'confirm',
-      name: 'overwrite',
-      message: 'components.json already exists. Overwrite?',
-      initial: false
-    });
-    
-    if (!overwrite) {
-      console.log(chalk.yellow('\n❌ Cancelled initialization\n'));
-      return;
+    if (!options.overwrite) {
+      const { overwrite } = await prompts({
+        type: 'confirm',
+        name: 'overwrite',
+        message: 'components.json already exists. Overwrite?',
+        initial: false
+      });
+      
+      if (!overwrite) {
+        console.log(chalk.yellow('\n❌ Cancelled initialization\n'));
+        return;
+      }
     }
   }
   
@@ -245,7 +248,7 @@ async function copyUtilityFiles(cwd: string, config: Config, spinner: any): Prom
   
   // Get the source utils from our package
   const utilsIndexContent = await fs.readFile(
-    path.join(__dirname, '../../utils/index.' + ext),
+    path.join(path.dirname(fileURLToPath(import.meta.url)), '../../utils/index.' + ext),
     'utf-8'
   ).catch(() => {
     // Fallback: create utils inline
@@ -253,7 +256,7 @@ async function copyUtilityFiles(cwd: string, config: Config, spinner: any): Prom
   });
   
   const utilsTypesContent = await fs.readFile(
-    path.join(__dirname, '../../utils/types.' + ext),
+    path.join(path.dirname(fileURLToPath(import.meta.url)), '../../utils/types.' + ext),
     'utf-8'
   ).catch(() => {
     return getTypesTemplate(ext);
@@ -268,6 +271,179 @@ async function copyUtilityFiles(cwd: string, config: Config, spinner: any): Prom
 }
 
 function getUtilsTemplate(ext: string): string {
+  const focusTrapClassJS = `
+export class FocusTrap {
+  constructor(element) {
+    this.element = element;
+    this.previousFocus = null;
+    this.isActive = false;
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  activate() {
+    if (this.isActive) return;
+    
+    this.previousFocus = document.activeElement;
+    this.isActive = true;
+    
+    const focusableElements = this.getFocusableElements();
+    if (focusableElements.length > 0) {
+      focusableElements[0].focus();
+    }
+    
+    this.element.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  deactivate() {
+    if (!this.isActive) return;
+    
+    this.isActive = false;
+    this.element.removeEventListener('keydown', this.handleKeyDown);
+    
+    if (this.previousFocus) {
+      this.previousFocus.focus();
+    }
+  }
+
+  handleKeyDown(e) {
+    if (e.key !== 'Tab') return;
+    
+    const focusableElements = this.getFocusableElements();
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        e.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        e.preventDefault();
+      }
+    }
+  }
+
+  getFocusableElements() {
+    const selector = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    return Array.from(this.element.querySelectorAll(selector));
+  }
+}`;
+
+  const portalClassJS = `
+export class Portal {
+  constructor(id = 'windelements-portal') {
+    let existing = document.getElementById(id);
+    if (!existing) {
+      existing = document.createElement('div');
+      existing.id = id;
+      document.body.appendChild(existing);
+    }
+    this.container = existing;
+  }
+  
+  append(element) {
+    this.container.appendChild(element);
+  }
+  
+  remove(element) {
+    if (this.container.contains(element)) {
+      this.container.removeChild(element);
+    }
+  }
+}`;
+
+  const focusTrapClassTS = `
+export class FocusTrap {
+  private element: HTMLElement;
+  private previousFocus: HTMLElement | null = null;
+  private isActive: boolean = false;
+
+  constructor(element: HTMLElement) {
+    this.element = element;
+  }
+
+  activate(): void {
+    if (this.isActive) return;
+    
+    this.previousFocus = document.activeElement as HTMLElement;
+    this.isActive = true;
+    
+    const focusableElements = this.getFocusableElements();
+    if (focusableElements.length > 0) {
+      focusableElements[0].focus();
+    }
+    
+    this.element.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  deactivate(): void {
+    if (!this.isActive) return;
+    
+    this.isActive = false;
+    this.element.removeEventListener('keydown', this.handleKeyDown);
+    
+    if (this.previousFocus) {
+      this.previousFocus.focus();
+    }
+  }
+
+  private handleKeyDown = (e: KeyboardEvent): void => {
+    if (e.key !== 'Tab') return;
+    
+    const focusableElements = this.getFocusableElements();
+    if (focusableElements.length === 0) return;
+    
+    const firstElement = focusableElements[0];
+    const lastElement = focusableElements[focusableElements.length - 1];
+    
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        lastElement.focus();
+        e.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        firstElement.focus();
+        e.preventDefault();
+      }
+    }
+  };
+
+  private getFocusableElements(): HTMLElement[] {
+    const selector = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    return Array.from(this.element.querySelectorAll<HTMLElement>(selector));
+  }
+}`;
+
+  const portalClassTS = `
+export class Portal {
+  private container: HTMLElement;
+  
+  constructor(id: string = 'windelements-portal') {
+    let existing = document.getElementById(id);
+    if (!existing) {
+      existing = document.createElement('div');
+      existing.id = id;
+      document.body.appendChild(existing);
+    }
+    this.container = existing;
+  }
+  
+  append(element: HTMLElement): void {
+    this.container.appendChild(element);
+  }
+  
+  remove(element: HTMLElement): void {
+    if (this.container.contains(element)) {
+      this.container.removeChild(element);
+    }
+  }
+}`;
+
   if (ext === 'js') {
     return `export function cn(...inputs) {
   const classes = [];
@@ -287,6 +463,8 @@ function getUtilsTemplate(ext: string): string {
 export function generateId(prefix = 'we') {
   return \`\${prefix}-\${Math.random().toString(36).substring(2, 11)}\`;
 }
+${focusTrapClassJS}
+${portalClassJS}
 `;
   }
   
@@ -308,6 +486,8 @@ export function generateId(prefix = 'we') {
 export function generateId(prefix: string = 'we'): string {
   return \`\${prefix}-\${Math.random().toString(36).substring(2, 11)}\`;
 }
+${focusTrapClassTS}
+${portalClassTS}
 `;
 }
 
