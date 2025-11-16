@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'WindElements',
   description: 'Production-ready UI components for Vanilla JavaScript/TypeScript',
-  base: '/windelements/',
+  base: '/WindElements/',
   ignoreDeadLinks: true,
   
   themeConfig: {
@@ -13,7 +13,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Components', link: '/components/' },
       { text: 'Examples', link: '/examples' },
-      { text: 'GitHub', link: 'https://github.com/muhammad-fiaz/windelements' }
+      { text: 'GitHub', link: 'https://github.com/muhammad-fiaz/WindElements' }
     ],
 
     sidebar: {
@@ -154,7 +154,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/muhammad-fiaz/windelements' }
+      { icon: 'github', link: 'https://github.com/muhammad-fiaz/WindElements' }
     ],
 
     footer: {
@@ -168,7 +168,7 @@ export default defineConfig({
   },
 
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/windelements/logo.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/WindElements/logo.svg' }],
     ['meta', { name: 'theme-color', content: '#646cff' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:title', content: 'WindElements' }],

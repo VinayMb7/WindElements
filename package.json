@@ -46,11 +46,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/muhammad-fiaz/windelements.git"
+    "url": "https://github.com/muhammad-fiaz/WindElements.git"
   },
-  "homepage": "https://muhammad-fiaz.github.io/windelements",
+  "homepage": "https://muhammad-fiaz.github.io/WindElements",
   "bugs": {
-    "url": "https://github.com/muhammad-fiaz/windelements/issues"
+    "url": "https://github.com/muhammad-fiaz/WindElements/issues"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",

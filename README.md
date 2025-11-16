@@ -1,6 +1,28 @@
-# WindElements
+<div align="center">
 
-Production-ready UI components for Vanilla JavaScript/TypeScript - like shadcn/ui but for vanilla JS.
+
+  <a href="https://www.npmjs.com/package/windelements"><img src="https://img.shields.io/npm/v/windelements" alt="NPM"></a>
+  <a href="https://www.npmjs.com/package/windelements"><img src="https://img.shields.io/npm/dm/windelements" alt="NPM - Downloads"></a>
+  <a href="https://muhammad-fiaz.github.io/WindElements/"><img src="https://img.shields.io/badge/docs-muhammad--fiaz.github.io-blue" alt="Documentation"></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/typescript-%3E%3D5.0-brightgreen.svg" alt="Supported TypeScript"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements"><img src="https://img.shields.io/github/stars/muhammad-fiaz/WindElements" alt="GitHub stars"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/issues"><img src="https://img.shields.io/github/issues/muhammad-fiaz/WindElements" alt="GitHub issues"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/pulls"><img src="https://img.shields.io/github/issues-pr/muhammad-fiaz/WindElements" alt="GitHub pull requests"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements"><img src="https://img.shields.io/github/last-commit/muhammad-fiaz/WindElements" alt="GitHub last commit"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/releases"><img src="https://img.shields.io/github/v/release/muhammad-fiaz/WindElements" alt="GitHub release"></a>
+  <a href="https://codecov.io/gh/muhammad-fiaz/WindElements"><img src="https://codecov.io/gh/muhammad-fiaz/WindElements/graph/badge.svg?token=1G3MU8SDX1" alt="codecov"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements"><img src="https://img.shields.io/github/license/muhammad-fiaz/WindElements" alt="License"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/deploy.yml"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/deploy.yml/badge.svg" alt="Deploy Documentation"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/publish.yml"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/publish.yml/badge.svg" alt="Publish NPM"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/testing.yml"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/testing.yml/badge.svg" alt="Testing"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/github-code-scanning/codeql/badge.svg" alt="CodeQL"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/dependabot/dependabot-updates"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/dependabot/dependabot-updates/badge.svg" alt="Dependabot Updates"></a>
+  <a href="https://github.com/muhammad-fiaz/WindElements/actions/workflows/build.yml"><img src="https://github.com/muhammad-fiaz/WindElements/actions/workflows/build.yml/badge.svg" alt="Build"></a>
+
+  <p><em>Production-ready UI components for Vanilla JavaScript/TypeScript - like shadcn/ui but for vanilla JS.</em></p>
+
+  **📚 [Documentation](https://muhammad-fiaz.github.io/WindElements/) | [API Reference](https://muhammad-fiaz.github.io/WindElements/components/) | [Quick Start](https://muhammad-fiaz.github.io/WindElements/guide/getting-started/)**
+</div>
 
 ## ✨ Features
 
@@ -12,7 +34,7 @@ Production-ready UI components for Vanilla JavaScript/TypeScript - like shadcn/u
 - 🎨 **OKLCH Color System** - Modern color definitions with automatic dark mode
 - ⚡ **Tree-Shakeable** - Only bundle what you use
 - 🎭 **Works Everywhere** - No framework required
-- 📚 **Comprehensive Docs** - Full documentation with live examples at [muhammad-fiaz.github.io/windelements](https://muhammad-fiaz.github.io/windelements)
+- 📚 **Comprehensive Docs** - Full documentation with live examples at [muhammad-fiaz.github.io/WindElements](https://muhammad-fiaz.github.io/WindElements)
 
 ## Installation
 
@@ -130,7 +152,7 @@ document.body.appendChild(button.getElement());
 ### 🎯 Marketing Components (4)
 `hero` `feature-card` `pricing-card` `testimonial`
 
-**[View Full Component Documentation →](https://muhammad-fiaz.github.io/windelements/components/)**
+**[View Full Component Documentation →](https://muhammad-fiaz.github.io/WindElements/components/)**
 
 ## Component API
 
@@ -207,6 +229,10 @@ const button = new Button(props);
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=muhammad-fiaz/WindElements&type=Date)](https://star-history.com/#muhammad-fiaz/WindElements&Date)
 
 ## Credits
 
